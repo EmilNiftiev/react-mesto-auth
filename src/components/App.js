@@ -63,43 +63,43 @@ function App() {
     setIsInfoTooltipPopup(false);
   }
 
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([data, cards]) => {
+          setCurrentUser({ ...currentUser, ...data });
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+          openInfoTooltipPopup(false);
+        });
+    }
+  }, [loggedIn]);
+
   // useEffect(() => {
-  //   if (loggedIn) {
-  //     Promise.all([api.getUserInfo(), api.getInitialCards()])
-  //       .then(([data, cards]) => {
-  //         setCurrentUser({ ...currentUser, ...data });
-  //         setCards(cards);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         openInfoTooltipPopup(false);
-  //       });
-  //   }
+  //   api
+  //     .getInitialCards()
+  //     .then((cards) => {
+  //       setCards(cards);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       openInfoTooltipPopup(false);
+  //     });
   // }, [loggedIn]);
 
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => {
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
-  }, [loggedIn]);
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser({ ...currentUser, data });
-      })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   api
+  //     .getUserInfo()
+  //     .then((data) => {
+  //       setCurrentUser({ ...currentUser, data });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       openInfoTooltipPopup(false);
+  //     });
+  // }, [loggedIn]);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
