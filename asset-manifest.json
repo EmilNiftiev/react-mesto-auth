@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-mesto-auth/static/css/main.73d5e974.css",
-    "main.js": "/react-mesto-auth/static/js/main.ad6dbbf4.js",
+    "main.js": "/react-mesto-auth/static/js/main.4054d313.js",
     "static/js/787.5530211c.chunk.js": "/react-mesto-auth/static/js/787.5530211c.chunk.js",
     "static/media/Inter-Medium.woff": "/react-mesto-auth/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff": "/react-mesto-auth/static/media/Inter-Black.c6938660eec019fefd68.woff",
@@ -22,11 +22,11 @@
     "static/media/pop-up-close-icon.svg": "/react-mesto-auth/static/media/pop-up-close-icon.039f1f5203f653b4bacd.svg",
     "static/media/profile-add-button.svg": "/react-mesto-auth/static/media/profile-add-button.bed8c136e13907f5eefb.svg",
     "main.73d5e974.css.map": "/react-mesto-auth/static/css/main.73d5e974.css.map",
-    "main.ad6dbbf4.js.map": "/react-mesto-auth/static/js/main.ad6dbbf4.js.map",
+    "main.4054d313.js.map": "/react-mesto-auth/static/js/main.4054d313.js.map",
     "787.5530211c.chunk.js.map": "/react-mesto-auth/static/js/787.5530211c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.73d5e974.css",
-    "static/js/main.ad6dbbf4.js"
+    "static/js/main.4054d313.js"
   ]
 }
