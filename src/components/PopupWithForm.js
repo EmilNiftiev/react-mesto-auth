@@ -26,7 +26,7 @@ function PopupWithForm(props) {
           title="Закрыть форму без сохранения"
           type="button"
           onClick={onClose}
-        ></button>
+        />
       </div>
     </div>
   );

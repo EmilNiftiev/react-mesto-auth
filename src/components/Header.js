@@ -14,7 +14,7 @@ function Header(props) {
         {loggedIn && <p className="header__email">{email}</p>}
         <Routes>
           <Route
-            path="/react-mesto-auth"
+            path="/"
             element={
               <Link to="/sign-in" className="header__link header__button">
                 Войти

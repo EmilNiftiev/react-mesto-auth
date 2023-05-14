@@ -55,6 +55,8 @@ function App() {
     setIsSignIn(isSignIn);
   }
 
+  // Закрытие попапов
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -62,6 +64,30 @@ function App() {
     setSelectedCard(null);
     setIsInfoTooltipPopup(false);
   }
+
+  // Закрытие по Escape
+
+  const isOpen =
+    isEditAvatarPopupOpen ||
+    isEditProfilePopupOpen ||
+    isAddPlacePopupOpen ||
+    selectedCard;
+
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if (evt.key === "Escape") {
+        closeAllPopups();
+      }
+    }
+    if (isOpen) {
+      // навешиваем только при открытии
+      document.addEventListener("keydown", closeByEscape);
+      return () => {
+        // потом удаляем слушатель
+        document.removeEventListener("keydown", closeByEscape);
+      };
+    }
+  }, [isOpen]);
 
   // Функция для блоков catch, чтобы избавиться от дублирования кода
 
