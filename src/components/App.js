@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -63,6 +63,13 @@ function App() {
     setIsInfoTooltipPopup(false);
   }
 
+  // Функция для блоков catch, чтобы избавиться от дублирования кода
+
+  const handleError = (err) => {
+    console.log(err);
+    openInfoTooltipPopup(false);
+  };
+
   useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -70,10 +77,7 @@ function App() {
           setCurrentUser({ ...currentUser, ...data });
           setCards(cards);
         })
-        .catch((err) => {
-          console.log(err);
-          openInfoTooltipPopup(false);
-        });
+        .catch(handleError);
     }
   }, [loggedIn]);
 
@@ -112,10 +116,7 @@ function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   function handleCardDelete(card) {
@@ -125,10 +126,7 @@ function App() {
         setCards((cards) => cards.filter((item) => item._id !== card._id));
       })
       .then(() => closeAllPopups())
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   function handleUpdateUser(data) {
@@ -138,10 +136,7 @@ function App() {
         setCurrentUser({ ...currentUser, ...serverData });
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log(err + "here?");
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   function handleUpdateAvatar(data) {
@@ -151,10 +146,7 @@ function App() {
         setCurrentUser({ ...currentUser, ...serverData });
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   function handleAddCard(card) {
@@ -164,10 +156,7 @@ function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   // Регистрация
@@ -181,10 +170,7 @@ function App() {
           navigate("/sign-in");
         }
       })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   // Проверить токен
@@ -201,10 +187,7 @@ function App() {
             navigate("/");
           }
         })
-        .catch((err) => {
-          console.log(err);
-          openInfoTooltipPopup(false);
-        });
+        .catch(handleError);
     }
   }
   useEffect(() => {
@@ -223,10 +206,7 @@ function App() {
           checkToken();
         }
       })
-      .catch((err) => {
-        console.log(err);
-        openInfoTooltipPopup(false);
-      });
+      .catch(handleError);
   }
 
   // Выход из профиля
@@ -268,6 +248,10 @@ function App() {
                   cards={cards}
                 />
               }
+            />
+            <Route
+              path="*"
+              element={<Navigate to={loggedIn ? "/" : "sign-in"} />}
             />
           </Routes>
 

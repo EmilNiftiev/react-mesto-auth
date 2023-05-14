@@ -1,10 +1,10 @@
 import React from "react";
-import icon_auth_ok from "../images/icon_auth_ok.svg";
-import icon_auth_fail from "../images/icon_auth_fail.svg";
+import iconAuthOk from "../images/icon_auth_ok.svg";
+import iconAuthFail from "../images/icon_auth_fail.svg";
 
 function InfoTooltip(props) {
   const { name, isSignIn, isOpen, onClose } = props;
-  const icon = isSignIn ? icon_auth_ok : icon_auth_fail;
+  const icon = isSignIn ? iconAuthOk : iconAuthFail;
   const message = isSignIn
     ? "Вы успешно зарегистрировались!"
     : "Что-то пошло не так! Попробуйте ещё раз.";
@@ -19,7 +19,11 @@ function InfoTooltip(props) {
           aria-label="Закрыть"
           onClick={onClose}
         ></button>
-        <img className="pop-up__tooltip-img" src={icon} />
+        <img
+          className="pop-up__tooltip-img"
+          src={icon}
+          alt={`Иконка успешной (или не очень) авторизации`}
+        />
         <h3 className="pop-up__title">{message}</h3>
       </div>
     </div>
