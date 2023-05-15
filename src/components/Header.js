@@ -1,6 +1,6 @@
 import React from "react";
 import headerLogo from "../images/header-logo.svg";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 
 function Header(props) {
   const { loggedIn, email, logOut } = props;
@@ -13,14 +13,6 @@ function Header(props) {
       <div className="header__links">
         {loggedIn && <p className="header__email">{email}</p>}
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Link to="/sign-in" className="header__link header__button">
-                Войти
-              </Link>
-            }
-          />
           <Route
             path="/sign-up"
             element={
@@ -36,6 +28,10 @@ function Header(props) {
                 Регистрация
               </Link>
             }
+          />
+          <Route
+            path="*"
+            element={<Navigate to={loggedIn ? "/" : "/sign-in"} />}
           />
         </Routes>
         {loggedIn && (

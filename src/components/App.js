@@ -277,7 +277,7 @@ function App() {
             />
             <Route
               path="*"
-              element={<Navigate to={loggedIn ? "/" : "sign-in"} />}
+              element={<Navigate to={loggedIn ? "/" : "/sign-in"} />}
             />
           </Routes>
 
